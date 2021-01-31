@@ -11,11 +11,10 @@ class TransactionsViewCoordinator: Coordinator {
     func start() {
         let transactionsViewController = TransactionsViewController.instantiate(storyboardName: "Main")
         let viewModel = TransactionsViewModel()
-        
+
         transactionsViewController.viewModel = viewModel
         viewModel.fetchTransactions()
         transactionsViewController.title = "Transactions"
         navigationController.pushViewController(transactionsViewController, animated: true)
     }
 }
-

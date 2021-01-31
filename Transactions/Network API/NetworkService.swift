@@ -14,20 +14,20 @@ class NetworkService: NetworkProtocol {
         let task = createDataTask(from: request, completion: completion)
         task.resume()
     }
-    
+
     private func createDataTask(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask {
         return URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-            
+
             if error != nil || data == nil {
                 completion(nil, error)
                 return
             }
-            
+
             guard let response = response as? HTTPURLResponse, (200 ... 299).contains(response.statusCode) else {
                 completion(nil, error)
                 return
             }
-            
+
             completion(data, nil)
         })
     }

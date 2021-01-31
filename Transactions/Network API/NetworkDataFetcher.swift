@@ -6,27 +6,27 @@ protocol NetworkDataFetcherProtocol {
 
 class NetworkDataFetcher: NetworkDataFetcherProtocol {
     var networking: NetworkProtocol
-    
+
     init(networking: NetworkProtocol = NetworkService()) {
         self.networking = networking
     }
-        
+
     func fetchTransactions(by ulr: String, completion: @escaping (Root?) -> Void) {
-        self.fetchGenericJSONData(urlString: ulr, response: completion)
+        fetchGenericJSONData(urlString: ulr, response: completion)
     }
-    
+
     internal func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> Void) {
         networking.request(urlString: urlString) { data, error in
             if let error = error {
                 print("Error received requesting data: \(error.localizedDescription)")
                 response(nil)
             }
-            
+
             let decoded = self.decodeJSON(type: T.self, from: data)
             response(decoded)
         }
     }
-    
+
     private func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
         let decoder = JSONDecoder()
         guard let data = from else { return nil }

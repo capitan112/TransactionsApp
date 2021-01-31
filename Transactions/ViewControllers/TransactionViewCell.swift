@@ -1,56 +1,54 @@
-import UIKit
 import SDWebImage
+import UIKit
 
 protocol TransactionViewModelCellType {
-    var transactions: Transaction? { get}
-}
-
-struct TransactionViewModelCell: TransactionViewModelCellType {
-    var transactions: Transaction?
+    var description: String { get }
+    var category: String { get }
+    var currencyISO: String { get }
+    var price: String { get }
+    var iconURL: URL? { get }
 }
 
 class TransactionViewCell: UITableViewCell {
-    
-    @IBOutlet weak var logoImageView: UIImageView!
-    @IBOutlet weak var descriptLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var selectionView: UIView!
-    
+    @IBOutlet var logoImageView: UIImageView!
+    @IBOutlet var descriptLabel: UILabel!
+    @IBOutlet var categoryLabel: UILabel!
+    @IBOutlet var priceLabel: UILabel!
+    @IBOutlet var selectionView: UIView!
+
     var viewModel: TransactionViewModelCellType? {
         didSet {
             updateUI()
         }
     }
-    
+
     class func reuseIdentifier() -> String {
         return "CellId"
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         configUI()
     }
-    
+
     private func configUI() {
-        self.selectionView.alpha = 0.4
+        selectionView.alpha = 0.4
         logoImageView.layer.cornerRadius = logoImageView.bounds.width / 2
         logoImageView.layer.masksToBounds = true
         logoImageView.layer.borderWidth = 1.0
         logoImageView.layer.borderColor = UIColor.lightGray.cgColor
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.selectionView.backgroundColor = selected ? .red : .clear
+        selectionView.backgroundColor = selected ? .red : .clear
     }
-    
+
     private func updateUI() {
-        guard  let viewModel = viewModel,
-               let transactions = viewModel.transactions else { return }
-        self.descriptLabel.text = transactions.description
-        self.categoryLabel.text = transactions.category
-        self.priceLabel.text = String(transactions.price)
-        self.logoImageView.sd_setImage(with: URL(string: transactions.iconURL))
+        guard let viewModel = viewModel else { return }
+        descriptLabel.text = viewModel.description
+        categoryLabel.text = viewModel.category
+        priceLabel.text = viewModel.price
+        logoImageView.sd_setImage(with: viewModel.iconURL, placeholderImage: UIImage(named: "placeholder"))
     }
 }

@@ -1,10 +1,3 @@
-//
-//  TransactionsUITests.swift
-//  TransactionsUITests
-//
-//  Created by Oleksiy Chebotarov on 29/01/2021.
-//
-
 import XCTest
 
 class TransactionsUITests: XCTestCase {

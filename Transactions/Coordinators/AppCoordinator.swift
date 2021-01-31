@@ -16,4 +16,3 @@ class AppCoordinator: Coordinator {
         coordinate(to: tableViewCoordinator)
     }
 }
-

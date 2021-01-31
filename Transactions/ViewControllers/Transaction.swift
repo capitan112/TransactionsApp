@@ -15,14 +15,14 @@ struct Transaction: Decodable, Equatable {
     let price: Double
     let currencyISO: String
     let iconURL: String
-    
+
     enum CodingKeys: String, CodingKey {
         case id, description, category, amount, product
         case price = "value"
         case currencyISO = "currency_iso"
         case iconURL = "icon"
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
@@ -36,7 +36,7 @@ struct Transaction: Decodable, Equatable {
     }
 }
 
-func ==(lhs: Transaction, rhs: Transaction) -> Bool {
+func == (lhs: Transaction, rhs: Transaction) -> Bool {
     return lhs.id == rhs.id
         && lhs.description == rhs.description
         && lhs.category == rhs.category
