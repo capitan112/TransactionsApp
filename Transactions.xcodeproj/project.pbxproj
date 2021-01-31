@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		129396FFC3387634BAB06A6F /* Pods_TransactionsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75ADAA53C8290741BC17A9FF /* Pods_TransactionsTests.framework */; };
 		483BEE4125C72184007AE0B8 /* MockTransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483BEE4025C72182007AE0B8 /* MockTransactionViewCell.swift */; };
+		483BEE9125C74DA3007AE0B8 /* TransactionViewModelCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483BEE9025C74DA3007AE0B8 /* TransactionViewModelCellTest.swift */; };
 		485B849925C57B8F00E8D357 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485B849825C57B8F00E8D357 /* TransactionsViewController.swift */; };
 		485B84BC25C57D1800E8D357 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485B84BB25C57D1800E8D357 /* Bindable.swift */; };
 		485B84C125C57D8300E8D357 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485B84C025C57D8200E8D357 /* NetworkService.swift */; };
@@ -55,6 +56,7 @@
 		099F56DDE516F8DA85F1F94F /* Pods-TransactionsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransactionsTests.release.xcconfig"; path = "Target Support Files/Pods-TransactionsTests/Pods-TransactionsTests.release.xcconfig"; sourceTree = "<group>"; };
 		163AD2901BC392EF0A76B54E /* Pods_Transactions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Transactions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		483BEE4025C72182007AE0B8 /* MockTransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTransactionViewCell.swift; sourceTree = "<group>"; };
+		483BEE9025C74DA3007AE0B8 /* TransactionViewModelCellTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModelCellTest.swift; sourceTree = "<group>"; };
 		485B849825C57B8F00E8D357 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		485B84BB25C57D1800E8D357 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		485B84C025C57D8200E8D357 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				48DF262925C4918B006B9781 /* TransactionsViewModelCellTests.swift */,
+				483BEE9025C74DA3007AE0B8 /* TransactionViewModelCellTest.swift */,
 				48DF262B25C4918B006B9781 /* Info.plist */,
 				483BEE4025C72182007AE0B8 /* MockTransactionViewCell.swift */,
 			);
@@ -503,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				483BEE9125C74DA3007AE0B8 /* TransactionViewModelCellTest.swift in Sources */,
 				48DF262A25C4918B006B9781 /* TransactionsViewModelCellTests.swift in Sources */,
 				483BEE4125C72184007AE0B8 /* MockTransactionViewCell.swift in Sources */,
 			);
