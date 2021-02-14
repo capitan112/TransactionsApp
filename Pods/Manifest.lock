@@ -1,18 +1,30 @@
 PODS:
+  - Nimble (9.0.0)
+  - Quick (3.1.0)
   - SDWebImage (5.10.2):
     - SDWebImage/Core (= 5.10.2)
   - SDWebImage/Core (5.10.2)
+  - SnapshotTesting (1.8.2)
 
 DEPENDENCIES:
+  - Nimble
+  - Quick
   - SDWebImage (~> 5.0)
+  - SnapshotTesting (~> 1.8.1)
 
 SPEC REPOS:
   trunk:
+    - Nimble
+    - Quick
     - SDWebImage
+    - SnapshotTesting
 
 SPEC CHECKSUMS:
+  Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
+  Quick: c723104474cdb9d47787d64d1198d0246dffec94
   SDWebImage: b969dcfc02c40a5da71eac0b03b8f1a0c794a86f
+  SnapshotTesting: 38947050d13960d57a4a9c166fcf51bca7d56970
 
-PODFILE CHECKSUM: 9d4b284cf9501570e51fa53a63fd3845a3939250
+PODFILE CHECKSUM: 94803123ee26c543799614d04b1649b990184e18
 
 COCOAPODS: 1.8.4

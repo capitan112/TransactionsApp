@@ -75,7 +75,7 @@ class TransactionsViewController: UITableViewController, Storyboarded {
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return transactions?.count ?? 1
+        return transactions?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -37,6 +37,20 @@ class TransactionViewCell: UITableViewCell {
         logoImageView.layer.masksToBounds = true
         logoImageView.layer.borderWidth = 1.0
         logoImageView.layer.borderColor = UIColor.lightGray.cgColor
+//        
+//        let upView = UIView()
+//        upView.translatesAutoresizingMaskIntoConstraints = false
+//        upView.layer.backgroundColor = UIColor.red.cgColor
+//        upView.layer.borderWidth = 4.0
+//        self.addSubview(upView)
+//        
+//        NSLayoutConstraint.activate([
+//            upView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            upView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+//            upView.topAnchor.constraint(equalTo: self.topAnchor),
+//            upView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+//        ])
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

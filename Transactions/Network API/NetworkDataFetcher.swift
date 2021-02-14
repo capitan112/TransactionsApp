@@ -2,6 +2,7 @@ import Foundation
 
 protocol NetworkDataFetcherProtocol {
     func fetchTransactions(by ulr: String, completion: @escaping (Root?) -> Void)
+    func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> Void)
 }
 
 class NetworkDataFetcher: NetworkDataFetcherProtocol {
@@ -15,7 +16,7 @@ class NetworkDataFetcher: NetworkDataFetcherProtocol {
         fetchGenericJSONData(urlString: ulr, response: completion)
     }
 
-    internal func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> Void) {
+    func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> Void) {
         networking.request(urlString: urlString) { data, error in
             if let error = error {
                 print("Error received requesting data: \(error.localizedDescription)")
