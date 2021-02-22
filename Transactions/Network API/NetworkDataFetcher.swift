@@ -1,8 +1,14 @@
 import Foundation
 
-protocol NetworkDataFetcherProtocol {
-    func fetchTransactions(by ulr: String, completion: @escaping ([String: [Transaction]]?) -> Void)
-    func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> Void)
+enum ConversionFailure: Error {
+    case invalidData
+    case missingData
+    case responceError
+}
+
+protocol NetworkDataFetcherProtocol {    
+    func fetchTransactions(by ulr: String, completion: @escaping (Result<[String: [Transaction]], Error>) -> Void)
+    func fetchGenericJSONData(urlString: String, response: @escaping (Result<[String: [Transaction]], Error>) -> Void)
 }
 
 class NetworkDataFetcher: NetworkDataFetcherProtocol {
@@ -12,31 +18,34 @@ class NetworkDataFetcher: NetworkDataFetcherProtocol {
         self.networking = networking
     }
 
-    func fetchTransactions(by ulr: String, completion: @escaping ([String: [Transaction]]?) -> Void) {
+    func fetchTransactions(by ulr: String, completion: @escaping (Result<[String: [Transaction]], Error>) -> Void) {
         fetchGenericJSONData(urlString: ulr, response: completion)
     }
 
-    func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> Void) {
-        networking.request(urlString: urlString) { data, error in
-            if let error = error {
-                print("Error received requesting data: \(error.localizedDescription)")
-                response(nil)
+    func fetchGenericJSONData(urlString: String, response: @escaping (Result<[String: [Transaction]], Error>) -> Void) {
+        networking.request(urlString: urlString) { dataResponse in
+            guard let data = try? dataResponse.get() else {
+                response(.failure(ConversionFailure.responceError))
+                return
             }
 
-            let decoded = self.decodeJSON(type: T.self, from: data)
-            response(decoded)
+            self.decodeJSON(from: data, completion: response)
         }
     }
 
-    private func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
+    private func decodeJSON(from data: Data?, completion: @escaping (Result<[String: [Transaction]], Error>) -> Void) {
+        guard let data = data else {
+            completion(.failure(ConversionFailure.missingData))
+            return
+        }
+        
         let decoder = JSONDecoder()
-        guard let data = from else { return nil }
         do {
-            let objects = try decoder.decode(type.self, from: data)
-            return objects
-        } catch let jsonError {
-            print("Failed to decode JSON", jsonError)
-            return nil
+            let result = Result(catching: {
+                try decoder.decode([String: [Transaction]].self, from: data)
+            })
+            
+            completion(result)
         }
     }
 }
