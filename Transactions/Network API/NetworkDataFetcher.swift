@@ -1,7 +1,7 @@
 import Foundation
 
 protocol NetworkDataFetcherProtocol {
-    func fetchTransactions(by ulr: String, completion: @escaping (Root?) -> Void)
+    func fetchTransactions(by ulr: String, completion: @escaping ([String: [Transaction]]?) -> Void)
     func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> Void)
 }
 
@@ -12,7 +12,7 @@ class NetworkDataFetcher: NetworkDataFetcherProtocol {
         self.networking = networking
     }
 
-    func fetchTransactions(by ulr: String, completion: @escaping (Root?) -> Void) {
+    func fetchTransactions(by ulr: String, completion: @escaping ([String: [Transaction]]?) -> Void) {
         fetchGenericJSONData(urlString: ulr, response: completion)
     }
 

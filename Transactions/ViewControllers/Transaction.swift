@@ -1,13 +1,5 @@
 import Foundation
 
-struct Root: Decodable {
-    let transactions: [Transaction]
-
-    enum CodingKeys: String, CodingKey {
-        case transactions = "data"
-    }
-}
-
 struct Transaction: Decodable, Equatable {
     let id: String
     let description: String

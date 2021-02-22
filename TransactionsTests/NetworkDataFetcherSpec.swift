@@ -26,10 +26,11 @@ class NetworkDataFetcherSpec: QuickSpec {
                 
                 it("should return not empty array") {
                     waitUntil { done in
-                        networkAPI.fetchTransactions(by: transactionsURL, completion: { root in
-                            expect(root?.transactions.count).toNot(beNil())
-                            expect(root?.transactions.count).to(beGreaterThan(0))
-                            expect(root?.transactions.count).to(equal(10))
+                        networkAPI.fetchTransactions(by: transactionsURL, completion: { dict in
+                            let transactions = dict?["data"]
+                            expect(transactions?.count).toNot(beNil())
+                            expect(transactions?.count).to(beGreaterThan(0))
+                            expect(transactions?.count).to(equal(10))
                         })
                         
                         done()

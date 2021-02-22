@@ -6,13 +6,13 @@ target 'Transactions' do
   use_frameworks!
 
   pod 'SDWebImage', '~> 5.0'
-  pod 'Quick'
-  pod 'Nimble'
-  pod 'SnapshotTesting', '~> 1.8.1'
+  
 
   target 'TransactionsTests' do
     inherit! :search_paths
-    # Pods for testing
+    pod 'Quick'
+    pod 'Nimble'
+    pod 'SnapshotTesting', '~> 1.8.1'
   end
 
   target 'TransactionsUITests' do
